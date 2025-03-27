@@ -1,0 +1,1 @@
+Du hast Recht, der Fehler tritt auf, weil react-router-dom noch nicht installiert ist. Lass uns den Code zunächst ohne React Router schreiben, und du kannst es später installieren, wenn du bereit bist, das Routing einzurichten.
