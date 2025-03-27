@@ -1,0 +1,28 @@
+# 📁 Neues Git-Repo initialisieren
+git init
+
+# 🔗 Remote-Repo hinzufügen
+git remote add origin https://github.com/USERNAME/REPO.git
+
+# ✅ Änderungen verfolgen
+git status
+
+# ➕ Alle neuen/geänderten Dateien hinzufügen
+git add .
+
+# 💬 Commit mit Nachricht erstellen
+git commit -m "Dein Commit-Text"
+
+# 🌳 Branch in 'main' umbenennen (optional)
+git branch -M main
+
+# 🚀 Code zum Remote-Repo hochladen
+git push -u origin main
+
+# 🔁 Änderungen vom Remote holen
+git pull
+
+# 📂 Bestehendes Repo klonen
+git clone https://github.com/USERNAME/REPO.git
+
+Mal was neues

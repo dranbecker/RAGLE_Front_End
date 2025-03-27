@@ -1,0 +1,9 @@
+
+
+public/index.html
+       ↓
+src/main.jsx  → rendert App.jsx
+       ↓
+src/App.jsx   → rendert Home.jsx
+       ↓
+src/pages/home.jsx → rendert Komponenten aus src/components/
