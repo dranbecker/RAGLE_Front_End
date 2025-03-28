@@ -5,6 +5,8 @@ import HeroSection from './components/hero'
 import Navigation from './components/navigation'
 import StatistikDashboard from './components/statisticsDashboard'
 import MedicalDisclaimer from './components/medicalDisclaimer'
+import QuestionAnswer from './components/QuestionAnswer'
+import ContentSection from './components/contentSection' // Neue Layout-Komponente
 import './App.css'
 
 function App() {
@@ -13,14 +15,22 @@ function App() {
       <Header />
       <HeroSection />
       <Navigation />
-      {/* Container für die Statistik mit Abständen */}
-      <div className='container mx-auto px-4 py-8'>
-        <StatistikDashboard />
-        <MedicalDisclaimer />
-        {/* Weitere Komponenten hier */}
-      </div>
 
-      {/* Weitere Komponenten wie StatistikDashboard etc. */}
+      {/* Hauptinhalt mit einheitlichem Layout */}
+      <div className='container mx-auto px-4 py-8'>
+        {/* Die StatistikDashboard Komponente hat bereits eigenes Styling */}
+        <StatistikDashboard />
+
+        {/* MedicalDisclaimer mit ContentSection für einheitliches Layout */}
+        <ContentSection>
+          <MedicalDisclaimer />
+        </ContentSection>
+
+        {/* QuestionAnswer mit ContentSection für einheitliches Layout */}
+        <ContentSection>
+          <QuestionAnswer />
+        </ContentSection>
+      </div>
     </div>
   )
 }
