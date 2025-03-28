@@ -33,7 +33,7 @@ const HeroSection = () => {
           Wir brauchen dich!
         </h2>
         <p className='mb-8 text-base'>
-          RAGLE-PD wird spezialisiertes Wissen zu Parkinson intelligenter,
+          Mit RAGLE-PD wird spezialisiertes Wissen zu Parkinson intelligenter,
           zugänglicher und relevanter. Unterstütze die Entwicklung einer
           Plattform, die nicht nur Antworten liefert, sondern den medizinischen
           Dialog neu denkt.
