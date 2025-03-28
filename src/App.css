@@ -1,7 +1,9 @@
+/* Diese Einschränkungen entfernen oder ändern */
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  /* max-width entfernen */
+  width: 100vw; /* Volle Viewport-Breite */
+  margin: 0; /* Kein automatisches Margin */
+  padding: 0; /* Kein Padding */
   text-align: center;
 }
 

@@ -1,42 +1,53 @@
-// src/components/heroSection.jsx
+// src/components/HeroSection.jsx
 import React from 'react'
+// Importiere das Bild - Stelle sicher, dass es im richtigen Verzeichnis liegt
+import bgImage from '../assets/andreas_discord.webp' // Pfad anpassen nach Bedarf
 
 const HeroSection = () => {
   return (
-    <div className='container mx-auto px-4 py-8 text-center'>
-      {/* Zitat */}
-      <blockquote className='text-lg md:text-xl mb-4 max-w-4xl mx-auto'>
-        "RAGLE-PD ist mehr als ein Zugang zu Wissen – es ist eine Plattform, auf
-        der aus Fragen Wissen entsteht und aus Antworten Lernen wird..."
-      </blockquote>
+    // Full-width container mit relativer Positionierung für absolute Elemente
+    <div className='relative w-full min-h-[460px] bg-slate-800 overflow-hidden'>
+      {/* Hintergrundbild mit dem Arzt - nimmt 70% der Breite ein */}
+      <div
+        className='absolute top-0 left-0 w-[70%] h-full bg-cover bg-top z-10'
+        style={{ backgroundImage: `url(${bgImage})` }}
+      ></div>
 
-      <p className='text-sm mb-8'>
-        — Dr. Andreas Becker, Neurologist & Chief Visionary, RAGLE-PD
-      </p>
+      {/* Linke Seite mit Zitat - überlappt das Hintergrundbild */}
+      <div className='relative w-[70%] p-[60px_40px] text-[#f8971d] z-20 flex flex-col justify-center  text-left'>
+        <blockquote className='text-2xl mb-5 max-w-[400px]'>
+          "RAGLE-PD ist mehr als ein Zugang zu Wissen – es ist eine Plattform,
+          auf der aus Fragen Wissen entsteht und aus Antworten Lernen wird..."
+        </blockquote>
 
-      {/* Hauptüberschrift */}
-      <h1 className='text-3xl md:text-4xl font-bold mb-2'>
-        Fortschritt braucht neue Wege..
-      </h1>
-      <h2 className='text-2xl md:text-3xl font-bold mb-6'>
-        Wir brauchen dich.
-      </h2>
+        <p className='text-white mb-2 max-w-[300]'>
+          Dr. Andreas Becker, <br /> Neurologist & Chief Visionary, RAGLE-PD
+        </p>
+      </div>
 
-      {/* Beschreibungstext */}
-      <p className='text-base md:text-lg mb-8 max-w-4xl mx-auto'>
-        Mit RAGLE wird spezialisiertes Wissen zu Parkinson intelligenter,
-        zugänglicher und relevanter. Unterstütze die Entwicklung einer
-        Plattform, die nicht nur Antworten liefert, sondern den medizinischen
-        Dialog neu denkt.
-      </p>
-
-      {/* CTA Button */}
-      <a
-        href='#spenden'
-        className='inline-block bg-blue-500 text-white font-semibold py-2 px-6 rounded hover:bg-blue-600 transition-colors'
-      >
-        Jetzt unterstützen
-      </a>
+      {/* Rechte Seite mit Call-to-Action - blaue Box */}
+      <div className='absolute top-0 right-0 w-[30%] bg-[#3498db] p-5 text-white z-20 h-full flex flex-col justify-center text-left'>
+        <h2 className='text-2xl mb-4 leading-tight'>
+          Fortschritt braucht neue Wege..
+          <br />
+          Wir brauchen dich!
+        </h2>
+        <p className='mb-8 text-base'>
+          RAGLE-PD wird spezialisiertes Wissen zu Parkinson intelligenter,
+          zugänglicher und relevanter. Unterstütze die Entwicklung einer
+          Plattform, die nicht nur Antworten liefert, sondern den medizinischen
+          Dialog neu denkt.
+        </p>
+        <div>
+          <span className='inline-block w-[60px] h-[2px] bg-white mr-4 align-middle'></span>
+          <a
+            href='#spenden'
+            className='inline-block bg-white text-[#3498db] px-8 py-3 rounded-full font-semibold text-center transition-all duration-300 hover:bg-gray-50 hover:-translate-y-0.5 hover:shadow-md'
+          >
+            Jetzt unterstützen
+          </a>
+        </div>
+      </div>
     </div>
   )
 }
