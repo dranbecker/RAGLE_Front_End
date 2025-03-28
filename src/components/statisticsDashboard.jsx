@@ -1,7 +1,8 @@
-// src/components/StatistikDashboard.jsx
+// src/components/statisticsDashboard.jsx - Aktualisierte Version mit Modal-Integration
 import React, { useState, useEffect } from 'react'
+import TopicSummaryModal from './topicSummaryModal' // Importiere die Modal-Komponente
 
-// StatistikDashboard-Komponente mit Hooks für State-Management
+// StatistikDashboard-Komponente mit Hooks für State-Management und Modal-Integration
 const StatistikDashboard = () => {
   // State für die Statistikdaten
   const [statsData, setStatsData] = useState({
@@ -16,71 +17,70 @@ const StatistikDashboard = () => {
   // State für den Ladezustand
   const [loading, setLoading] = useState(true)
 
-  // State für das Modal (falls du das implementieren möchtest)
+  // State für das Modal
   const [modalOpen, setModalOpen] = useState(false)
   const [selectedTopic, setSelectedTopic] = useState('')
 
-  // Daten beim ersten Rendern laden (ComponentDidMount-Ersatz)
+  // Daten beim ersten Rendern laden
   useEffect(() => {
-    // Funktion zum Laden der Statistikdaten
-    const fetchStatistikData = async () => {
-      try {
-        setLoading(true)
-
-        // API-Aufruf zum Backend - verwende den tatsächlichen Endpunkt
-        const response = await fetch('/api/statistics')
-
-        // Prüfen, ob die Anfrage erfolgreich war
-        if (!response.ok) {
-          throw new Error(`HTTP-Fehler! Status: ${response.status}`)
-        }
-
-        const data = await response.json()
-        console.log('Geladene Statistikdaten:', data) // Debug-Log
-
-        // Optional: Dokumente-Anzahl separat laden
-        let documentCount = 0
-        try {
-          const docResponse = await fetch('/api/documents/count')
-          const docData = await docResponse.json()
-          documentCount = docData.count || 0
-        } catch (docError) {
-          console.warn('Fehler beim Laden der Dokumentenanzahl:', docError)
-        }
-
-        // Daten in den State setzen - angepasst an das tatsächliche Format
-        setStatsData({
-          totalQuestions: data.totalQuestions || 0,
-          totalFeedback: data.totalFeedback || 0,
-          positiveCount: data.positiveCount || 0,
-          positiveRate: data.positiveRate || 0,
-          documentCount: documentCount,
-          trendingTopics: data.trendingTopics || [],
-        })
-      } catch (error) {
-        console.error('Fehler beim Laden der Statistiken:', error)
-        // Fallback-Daten für Entwicklungszwecke
-        setStatsData({
-          totalQuestions: 311,
-          totalFeedback: 139,
-          positiveCount: 128,
-          positiveRate: '92.1',
-          documentCount: 36,
-          trendingTopics: [
-            { topic: 'Harnwegsinfekt', category: 'Krankheit', count: 3 },
-            { topic: 'Weaningversagen', category: 'Symptom', count: 2 },
-            { topic: 'Tracheotomie', category: 'Verfahren', count: 3 },
-            { topic: 'Dopaminagonisten', category: 'Medikament', count: 8 },
-            { topic: 'Rasagilin', category: 'Medikament', count: 9 },
-          ],
-        })
-      } finally {
-        setLoading(false)
-      }
-    }
-
     fetchStatistikData()
-  }, []) // Leeres Array = nur beim ersten Rendern ausführen
+  }, [])
+
+  // Funktion zum Laden der Statistikdaten
+  const fetchStatistikData = async () => {
+    try {
+      setLoading(true)
+
+      // API-Aufruf zum Backend
+      const response = await fetch('/api/statistics')
+
+      if (!response.ok) {
+        throw new Error(`HTTP-Fehler! Status: ${response.status}`)
+      }
+
+      const data = await response.json()
+      console.log('Geladene Statistikdaten:', data)
+
+      // Optional: Dokumente-Anzahl separat laden
+      let documentCount = 0
+      try {
+        const docResponse = await fetch('/api/documents/count')
+        const docData = await docResponse.json()
+        documentCount = docData.count || 0
+      } catch (docError) {
+        console.warn('Fehler beim Laden der Dokumentenanzahl:', docError)
+      }
+
+      // Daten in den State setzen
+      setStatsData({
+        totalQuestions: data.totalQuestions || 0,
+        totalFeedback: data.totalFeedback || 0,
+        positiveCount: data.positiveCount || 0,
+        positiveRate: data.positiveRate || 0,
+        documentCount: documentCount,
+        trendingTopics: data.trendingTopics || [],
+      })
+    } catch (error) {
+      console.error('Fehler beim Laden der Statistiken:', error)
+      // Fallback-Daten für Entwicklungszwecke
+      setStatsData({
+        totalQuestions: 321,
+        totalFeedback: 145,
+        positiveCount: 130,
+        positiveRate: '89.7',
+        documentCount: 36,
+        trendingTopics: [
+          { topic: 'Harnwegsinfektion', category: 'Krankheit', count: 3 },
+          { topic: 'Weaningversagen', category: 'Symptom', count: 2 },
+          { topic: 'Tracheotomie', category: 'Verfahren', count: 3 },
+          { topic: 'Dopaminagonisten', category: 'Medikament', count: 7 },
+          { topic: 'Rasagilin', category: 'Medikament', count: 4 },
+        ],
+      })
+    } finally {
+      setLoading(false)
+    }
+  }
 
   // Farbzuordnung für verschiedene Themenkategorien
   const categoryColors = {
@@ -104,13 +104,19 @@ const StatistikDashboard = () => {
     default: '📋',
   }
 
-  // Funktion zum Anzeigen der Themenzusammenfassung
+  /**
+   * Öffnet den Modal für die Themenzusammenfassung
+   */
   const showTopicSummary = (topic) => {
     setSelectedTopic(topic)
     setModalOpen(true)
+  }
 
-    // Für jetzt nur ein Alert, später könnte hier ein Modal geöffnet werden
-    alert(`Zusammenfassung für Thema: ${topic} würde hier angezeigt werden`)
+  /**
+   * Schließt den Modal
+   */
+  const closeModal = () => {
+    setModalOpen(false)
   }
 
   // Helper-Funktion zum Anzeigen der Topic-Tags
@@ -123,7 +129,7 @@ const StatistikDashboard = () => {
     return (
       <div
         key={topic.topic}
-        className='topic-tag flex items-center p-2 rounded-lg cursor-pointer transition-all'
+        className='topic-tag flex items-center p-2 rounded-lg cursor-pointer transition-all hover:-translate-y-1 hover:shadow-md'
         style={{
           backgroundColor: `${color}20`, // 20% Opacity
           color: color,
@@ -162,51 +168,60 @@ const StatistikDashboard = () => {
   }
 
   return (
-    <div className='bg-gray-100 p-5 rounded-lg shadow-sm mb-6'>
-      {/* Statistik-Container */}
-      <div className='flex flex-wrap gap-4 mb-4'>
-        {/* Karten für die Statistikdaten */}
-        <StatCard
-          value={statsData.totalQuestions}
-          label='Gesamte Fragen'
-          color='#3498db'
-        />
+    <>
+      <div className='bg-gray-100 p-5 rounded-lg shadow-sm mb-6'>
+        {/* Statistik-Container */}
+        <div className='flex flex-wrap gap-4 mb-4'>
+          {/* Karten für die Statistikdaten */}
+          <StatCard
+            value={statsData.totalQuestions}
+            label='Gesamte Fragen'
+            color='#3498db'
+          />
 
-        <StatCard
-          value={statsData.positiveCount}
-          label='Positive Bewertungen'
-          color='#2ecc71'
-        />
+          <StatCard
+            value={statsData.positiveCount}
+            label='Positive Bewertungen'
+            color='#2ecc71'
+          />
 
-        <StatCard
-          value={`${statsData.positiveRate}%`}
-          label='Zufriedenheitsrate'
-          color='#f39c12'
-        />
+          <StatCard
+            value={`${statsData.positiveRate}%`}
+            label='Zufriedenheitsrate'
+            color='#f39c12'
+          />
 
-        <StatCard
-          value={statsData.totalFeedback}
-          label='Abgegebenes Feedback'
-          color='#9b59b6'
-        />
+          <StatCard
+            value={statsData.totalFeedback}
+            label='Abgegebenes Feedback'
+            color='#9b59b6'
+          />
 
-        <StatCard
-          value={statsData.documentCount}
-          label='Verfügbare Dokumente'
-          color='#e74c3c'
-        />
-      </div>
+          <StatCard
+            value={statsData.documentCount}
+            label='Verfügbare Dokumente'
+            color='#e74c3c'
+          />
+        </div>
 
-      {/* Trendthemen-Bereich */}
-      <div className='mt-6'>
-        <h3 className='text-gray-700 font-medium mb-2'>
-          Trendthemen (30 Tage)
-        </h3>
-        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2'>
-          {statsData.trendingTopics.map((topic) => renderTopicTag(topic))}
+        {/* Trendthemen-Bereich */}
+        <div className='mt-6'>
+          <h3 className='text-gray-700 font-medium mb-2'>
+            Trendthemen (30 Tage)
+          </h3>
+          <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2'>
+            {statsData.trendingTopics.map((topic) => renderTopicTag(topic))}
+          </div>
         </div>
       </div>
-    </div>
+
+      {/* Modal für Themenzusammenfassung */}
+      <TopicSummaryModal
+        isOpen={modalOpen}
+        topic={selectedTopic}
+        onClose={closeModal}
+      />
+    </>
   )
 }
 
@@ -217,9 +232,7 @@ const StatCard = ({ value, label, color }) => {
       className='flex-1 min-w-[150px] bg-white p-4 rounded-lg shadow-sm border-t-4 transition-transform hover:translate-y-[-2px]'
       style={{ borderColor: color }}
     >
-      {/* Größere, extrafette Schrift für den Wert */}
       <div className='text-base font-medium mb-1'>{value}</div>
-      {/* Etwas größere, blaue Schrift für die Beschriftung */}
       <div className='text-sm text-gray-500 font-sans'>{label}</div>
     </div>
   )
