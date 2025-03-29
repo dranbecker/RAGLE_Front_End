@@ -6,10 +6,10 @@ import bgImage from '../assets/andreas_discord.webp' // Pfad anpassen nach Bedar
 const HeroSection = () => {
   return (
     // Full-width container mit relativer Positionierung für absolute Elemente
-    <div className='relative w-full min-h-[460px] bg-slate-800 overflow-hidden'>
+    <div className='relative w-full min-h-[460px] bg-slate-800 overflow-hidden '>
       {/* Hintergrundbild mit dem Arzt - nimmt 70% der Breite ein */}
       <div
-        className='absolute top-0 left-0 w-[70%] h-[calc(100vh-120px)] max-h-[700px] bg-cover bg-top z-10'
+        className='absolute top-0 left-0 w-[70%] h-full max-h-[700px] bg-cover bg-top z-10'
         style={{ backgroundImage: `url(${bgImage})` }}
       ></div>
 

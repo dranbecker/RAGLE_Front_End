@@ -1,12 +1,10 @@
 // src/pages/datenschutz.jsx
 import React from 'react'
 import ContentSection from '../components/contentSection'
-import Navigation from '../components/navigation'
 
 function Datenschutz() {
   return (
     <>
-      <Navigation />
       <div className='container mx-auto px-4 py-8'>
         <ContentSection>
           <div className='max-w-none text-left'>
