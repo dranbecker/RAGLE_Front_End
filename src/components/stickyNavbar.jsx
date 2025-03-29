@@ -32,10 +32,10 @@ const StickyNavigation = () => {
           </Link>
           <div className='flex items-center space-x-6 rtl:space-x-reverse'>
             <a
-              href='tel:+496221884010'
+              href='tel:+49621221133 '
               className='text-sm text-gray-300 hover:text-white hover:underline'
             >
-              +49 6221 88 4010
+              +49 621 22 11 33
             </a>
             <Link
               to='/login'
