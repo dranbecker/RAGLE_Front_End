@@ -1,12 +1,10 @@
 // src/pages/impressum.jsx
 import React from 'react'
 import ContentSection from '../components/contentSection'
-import Navigation from '../components/navigation'
 
 function Impressum() {
   return (
     <>
-      <Navigation />
       <div className='container mx-auto px-4 py-8'>
         <ContentSection>
           <h1 className='text-2xl font-bold mb-6'>Impressum</h1>

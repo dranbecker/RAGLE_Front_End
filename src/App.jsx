@@ -1,9 +1,8 @@
-// src/App.jsx
+// src/App.jsx (Angepasst)
 import React from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import Header from './components/header'
+import StickyNavbar from './components/StickyNavbar' // Importiere die neue Navbar
 import HeroSection from './components/hero'
-import Navigation from './components/navigation'
 import StatistikDashboard from './components/statisticsDashboard'
 import MedicalDisclaimer from './components/medicalDisclaimer'
 import QuestionAnswer from './components/questionAnswer'
@@ -16,6 +15,7 @@ import Footer from './components/footer'
 import Impressum from './pages/impressum'
 import Datenschutz from './pages/datenschutz'
 import Nutzungsbedingungen from './pages/nutzungsbedingungen'
+import UeberUns from './pages/ueberUns'
 import { AuthProvider, useAuth } from './context/authContext'
 import './App.css'
 
@@ -39,11 +39,13 @@ function ProtectedRoute({ children }) {
 }
 
 // Homepage-Komponente
+// Homepage-Komponente
 function Home() {
   return (
-    <>
+    <div>
+      {' '}
+      {/* Platz für die StickyNavbar einplanen */}
       <HeroSection />
-      <Navigation />
       <div className='container mx-auto px-4 py-8'>
         <StatistikDashboard />
         <ContentSection>
@@ -53,7 +55,7 @@ function Home() {
           <QuestionAnswer />
         </ContentSection>
       </div>
-    </>
+    </div>
   )
 }
 
@@ -62,9 +64,13 @@ function App() {
     <AuthProvider>
       <BrowserRouter>
         <div className='min-h-screen bg-white flex flex-col'>
-          <Header />
+          {/* Füge die Sticky-Navbar an dieser Stelle ein */}
+          <StickyNavbar />
 
-          <div className='flex-grow'>
+          {/* Hauptinhalt mit Abstand zum Navbar */}
+          <div className='flex-grow pt-[112px]'>
+            {' '}
+            {/* mt-16 für Abstand zur Sticky-Navbar */}
             <Routes>
               <Route path='/' element={<Home />} />
               <Route path='/top-themen' element={<TopThemen />} />
@@ -78,6 +84,8 @@ function App() {
               />
               <Route path='/login' element={<Login />} />
 
+              <Route path='/ueber-uns' element={<UeberUns />} />
+
               {/* Neue Routen für rechtliche Seiten */}
               <Route path='/impressum' element={<Impressum />} />
               <Route path='/datenschutz' element={<Datenschutz />} />
@@ -89,7 +97,6 @@ function App() {
               <Route path='*' element={<NotFound />} />
             </Routes>
           </div>
-
           {/* Footer-Komponente am Ende */}
           <Footer />
         </div>
