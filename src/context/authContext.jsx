@@ -15,13 +15,23 @@ export function AuthProvider({ children }) {
   const [userRole, setUserRole] = useState(null)
   const [loading, setLoading] = useState(true)
 
+  console.log('AuthProvider wird gerendert, aktueller Zustand:', {
+    user,
+    userRole,
+    loading,
+  })
+
   // Simulierter Authentifizierungs-Check beim Laden
   useEffect(() => {
+    console.log('AuthProvider useEffect wird ausgeführt')
     // Prüfen, ob es einen gespeicherten User im localStorage gibt
     const savedUser = localStorage.getItem('ragle_user')
+    console.log('Gespeicherter User:', savedUser)
+
     if (savedUser) {
       try {
         const parsedUser = JSON.parse(savedUser)
+        console.log('Gespeicherter User geparst:', parsedUser)
         setUser(parsedUser)
         setUserRole(parsedUser.role)
       } catch (error) {

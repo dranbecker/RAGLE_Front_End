@@ -1,8 +1,122 @@
-// src/pages/RaglePrime.jsx
+// src/pages/raglePrime.jsx
 import React, { useState } from 'react'
 import ContentSection from '../components/contentSection'
+import { useAuth } from '../context/authContext' // Wichtig: Hook importieren
+import { Navigate } from 'react-router-dom' // Für Umleitung
 
-// Beispiel-Komponente für den Chat-Bereich (später durch echten Chat ersetzen)
+function RaglePrime() {
+  // Auth-Kontext verwenden
+  const { user, userRole: authUserRole, isAdmin } = useAuth()
+
+  // Überprüfung, ob der Benutzer angemeldet ist
+  if (!user) {
+    console.log('Nicht angemeldet - leite zur Login-Seite weiter')
+    return <Navigate to='/login' replace />
+  }
+
+  // Lokale State für Tests
+  const [localUserRole, setLocalUserRole] = useState('admin') // Diese Variable war falsch benannt
+
+  // Verwende entweder die echte Rolle aus dem Auth-Kontext oder die lokale Fallback-Rolle
+  const effectiveUserRole = authUserRole || localUserRole
+  const effectiveIsAdmin =
+    isAdmin !== undefined ? isAdmin : effectiveUserRole === 'admin'
+
+  const [activeTab, setActiveTab] = useState('chat')
+
+  console.log('RaglePrime gerendert mit:', {
+    authUserRole,
+    user,
+    isAdmin,
+    effectiveUserRole,
+  })
+
+  return (
+    <div className='container mx-auto px-4 py-8'>
+      <ContentSection>
+        <h1 className='text-2xl font-bold mb-6'>RAGLE Prime</h1>
+
+        {/* Anzeige der Benutzerinfo */}
+        <div className='p-3 bg-blue-50 rounded mb-4'>
+          <p>
+            Angemeldet als: <strong>{user?.email}</strong>
+          </p>
+          <p>
+            Rolle: <strong>{effectiveUserRole}</strong>
+          </p>
+        </div>
+
+        {/* Tabs für Admin-Nutzer */}
+        {effectiveIsAdmin && (
+          <div className='flex mb-6 border-b'>
+            <button
+              className={`py-2 px-4 mr-2 ${
+                activeTab === 'chat'
+                  ? 'border-b-2 border-blue-500 text-blue-500 font-medium'
+                  : 'text-gray-500'
+              }`}
+              onClick={() => setActiveTab('chat')}
+            >
+              Prime Chat
+            </button>
+            <button
+              className={`py-2 px-4 ${
+                activeTab === 'admin'
+                  ? 'border-b-2 border-blue-500 text-blue-500 font-medium'
+                  : 'text-gray-500'
+              }`}
+              onClick={() => setActiveTab('admin')}
+            >
+              Admin-Bereich
+            </button>
+          </div>
+        )}
+
+        {/* Inhaltsbereich basierend auf Tab oder Rolle */}
+        {effectiveIsAdmin ? (
+          activeTab === 'chat' ? (
+            <PrimeChat />
+          ) : (
+            <AdminSection />
+          )
+        ) : (
+          <PrimeChat />
+        )}
+
+        {/* Temporärer Schalter zum Testen verschiedener Rollen */}
+        <div className='mt-8 pt-4 border-t'>
+          <p className='mb-2 text-sm text-gray-500'>
+            Rollenumschaltung für Entwicklungszwecke:
+          </p>
+          <div className='flex'>
+            <button
+              className={`mr-4 px-3 py-1 rounded ${
+                effectiveUserRole === 'admin'
+                  ? 'bg-blue-500 text-white'
+                  : 'bg-gray-200'
+              }`}
+              onClick={() => setLocalUserRole('admin')}
+            >
+              Als Admin
+            </button>
+            <button
+              className={`px-3 py-1 rounded ${
+                effectiveUserRole === 'prime'
+                  ? 'bg-blue-500 text-white'
+                  : 'bg-gray-200'
+              }`}
+              onClick={() => setLocalUserRole('prime')}
+            >
+              Als Prime-Mitglied
+            </button>
+          </div>
+        </div>
+      </ContentSection>
+    </div>
+  )
+}
+
+// Beispiel-Komponente für den Chat-Bereich (Funktionen fü deinen Code beibehalten)
 function PrimeChat() {
   const [messages, setMessages] = useState([
     { id: 1, text: 'Willkommen bei RAGLE Prime!', sender: 'system' },
@@ -74,7 +188,7 @@ function PrimeChat() {
   )
 }
 
-// Beispiel für einen Admin-Bereich (später durch echten Admin-Bereich ersetzen)
+// Beispiel für einen Admin-Bereich
 function AdminSection() {
   return (
     <div>
@@ -99,84 +213,6 @@ function AdminSection() {
           </button>
         </div>
       </div>
-    </div>
-  )
-}
-
-function RaglePrime() {
-  // Simulieren des eingeloggten Benutzers (später durch echte Authentifizierung ersetzen)
-  const [userRole, setUserRole] = useState('admin') // 'admin' oder 'prime'
-  const [activeTab, setActiveTab] = useState('chat')
-
-  const isAdmin = userRole === 'admin'
-
-  return (
-    <div className='container mx-auto px-4 py-8'>
-      <ContentSection>
-        <h1 className='text-2xl font-bold mb-6'>RAGLE Prime</h1>
-
-        {/* Tabs für Admin-Nutzer */}
-        {isAdmin && (
-          <div className='flex mb-6 border-b'>
-            <button
-              className={`py-2 px-4 mr-2 ${
-                activeTab === 'chat'
-                  ? 'border-b-2 border-blue-500 text-blue-500 font-medium'
-                  : 'text-gray-500'
-              }`}
-              onClick={() => setActiveTab('chat')}
-            >
-              Prime Chat
-            </button>
-            <button
-              className={`py-2 px-4 ${
-                activeTab === 'admin'
-                  ? 'border-b-2 border-blue-500 text-blue-500 font-medium'
-                  : 'text-gray-500'
-              }`}
-              onClick={() => setActiveTab('admin')}
-            >
-              Admin-Bereich
-            </button>
-          </div>
-        )}
-
-        {/* Inhaltsbereich basierend auf Tab oder Rolle */}
-        {isAdmin ? (
-          activeTab === 'chat' ? (
-            <PrimeChat />
-          ) : (
-            <AdminSection />
-          )
-        ) : (
-          <PrimeChat />
-        )}
-
-        {/* Temporärer Schalter zum Testen verschiedener Rollen */}
-        <div className='mt-8 pt-4 border-t'>
-          <p className='mb-2 text-sm text-gray-500'>
-            Rollenumschaltung für Entwicklungszwecke:
-          </p>
-          <div className='flex'>
-            <button
-              className={`mr-4 px-3 py-1 rounded ${
-                userRole === 'admin' ? 'bg-blue-500 text-white' : 'bg-gray-200'
-              }`}
-              onClick={() => setUserRole('admin')}
-            >
-              Als Admin
-            </button>
-            <button
-              className={`px-3 py-1 rounded ${
-                userRole === 'prime' ? 'bg-blue-500 text-white' : 'bg-gray-200'
-              }`}
-              onClick={() => setUserRole('prime')}
-            >
-              Als Prime-Mitglied
-            </button>
-          </div>
-        </div>
-      </ContentSection>
     </div>
   )
 }

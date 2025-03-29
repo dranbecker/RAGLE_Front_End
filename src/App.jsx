@@ -53,50 +53,30 @@ function Home() {
   )
 }
 
-function AppContent() {
-  const { user } = useAuth()
-
-  return (
-    <div className='min-h-screen bg-white'>
-      <Header />
-      <Navigation userLoggedIn={!!user} />
-
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/top-themen' element={<TopThemen />} />
-        <Route path='/login' element={<Login />} />
-        <Route
-          path='/ragle-prime'
-          element={
-            <ProtectedRoute>
-              <RaglePrime />
-            </ProtectedRoute>
-          }
-        />
-        <Route path='*' element={<NotFound />} />
-      </Routes>
-    </div>
-  )
-}
-
 function App() {
   return (
-    <BrowserRouter>
-      <div className='min-h-screen bg-white'>
-        {/* NUR Header ist immer sichtbar */}
-        <Header />
+    <AuthProvider>
+      <BrowserRouter>
+        <div className='min-h-screen bg-white'>
+          <Header />
 
-        {/* ENTFERNE die Navigation hier! */}
-
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/top-themen' element={<TopThemen />} />
-          <Route path='/ragle-prime' element={<RaglePrime />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='*' element={<NotFound />} />
-        </Routes>
-      </div>
-    </BrowserRouter>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/top-themen' element={<TopThemen />} />
+            <Route
+              path='/ragle-prime'
+              element={
+                <ProtectedRoute>
+                  <RaglePrime />
+                </ProtectedRoute>
+              }
+            />
+            <Route path='/login' element={<Login />} />
+            <Route path='*' element={<NotFound />} />
+          </Routes>
+        </div>
+      </BrowserRouter>
+    </AuthProvider>
   )
 }
 

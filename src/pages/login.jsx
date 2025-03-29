@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import ContentSection from '../components/contentSection'
-import { useAuth } from '../context/AuthContext'
+import { useAuth } from '../context/authContext'
 
 function Login() {
   const [email, setEmail] = useState('')
