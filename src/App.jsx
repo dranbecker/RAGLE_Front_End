@@ -12,6 +12,10 @@ import TopThemen from './pages/topThemen'
 import RaglePrime from './pages/raglePrime'
 import Login from './pages/login'
 import NotFound from './pages/notFound'
+import Footer from './components/footer'
+import Impressum from './pages/impressum'
+import Datenschutz from './pages/datenschutz'
+import Nutzungsbedingungen from './pages/nutzungsbedingungen'
 import { AuthProvider, useAuth } from './context/authContext'
 import './App.css'
 
@@ -57,23 +61,37 @@ function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
-        <div className='min-h-screen bg-white'>
+        <div className='min-h-screen bg-white flex flex-col'>
           <Header />
 
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/top-themen' element={<TopThemen />} />
-            <Route
-              path='/ragle-prime'
-              element={
-                <ProtectedRoute>
-                  <RaglePrime />
-                </ProtectedRoute>
-              }
-            />
-            <Route path='/login' element={<Login />} />
-            <Route path='*' element={<NotFound />} />
-          </Routes>
+          <div className='flex-grow'>
+            <Routes>
+              <Route path='/' element={<Home />} />
+              <Route path='/top-themen' element={<TopThemen />} />
+              <Route
+                path='/ragle-prime'
+                element={
+                  <ProtectedRoute>
+                    <RaglePrime />
+                  </ProtectedRoute>
+                }
+              />
+              <Route path='/login' element={<Login />} />
+
+              {/* Neue Routen für rechtliche Seiten */}
+              <Route path='/impressum' element={<Impressum />} />
+              <Route path='/datenschutz' element={<Datenschutz />} />
+              <Route
+                path='/nutzungsbedingungen'
+                element={<Nutzungsbedingungen />}
+              />
+
+              <Route path='*' element={<NotFound />} />
+            </Routes>
+          </div>
+
+          {/* Footer-Komponente am Ende */}
+          <Footer />
         </div>
       </BrowserRouter>
     </AuthProvider>
