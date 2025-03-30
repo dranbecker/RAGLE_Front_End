@@ -1,4 +1,3 @@
-// src/App.jsx (Angepasst)
 import React from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import StickyNavbar from './components/StickyNavbar' // Importiere die neue Navbar
@@ -17,6 +16,7 @@ import Datenschutz from './pages/datenschutz'
 import Nutzungsbedingungen from './pages/nutzungsbedingungen'
 import UeberUns from './pages/ueberUns'
 import { AuthProvider, useAuth } from './context/authContext'
+import NewPublicationCardList from './components/newPublicationCardList'
 import './App.css'
 
 // Geschützte Route Komponente
@@ -37,16 +37,16 @@ function ProtectedRoute({ children }) {
 
   return children
 }
-
-// Homepage-Komponente
 // Homepage-Komponente
 function Home() {
   return (
     <div>
-      {' '}
-      {/* Platz für die StickyNavbar einplanen */}
       <HeroSection />
-      <div className='container mx-auto px-4 py-8'>
+      {/* Neue Karten-Komponente für aktuelle Publikationen */}
+      <div className='w-full px-8 py-6'>
+        <NewPublicationCardList />
+      </div>
+      <div className='container mx-auto px-4 py-2'>
         <StatistikDashboard />
         <ContentSection>
           <MedicalDisclaimer />

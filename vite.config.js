@@ -8,7 +8,8 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://ragle.onrender.com',
+        // target: 'https://ragle.onrender.com',
+        target: 'http://localhost:3000', // ⬅️ Lokaler Node.js-Server
         changeOrigin: true,
       },
     },
