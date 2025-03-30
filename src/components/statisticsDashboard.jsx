@@ -1,6 +1,8 @@
 // src/components/statisticsDashboard.jsx - Aktualisierte Version mit Modal-Integration
 import React, { useState, useEffect } from 'react'
 import TopicSummaryModal from './topicSummaryModal' // Importiere die Modal-Komponente
+//Holt jetzt den Host aus der env
+const API_BASE = import.meta.env.VITE_API_BASE_URL
 
 // StatistikDashboard-Komponente mit Hooks für State-Management und Modal-Integration
 const StatistikDashboard = () => {
@@ -31,8 +33,14 @@ const StatistikDashboard = () => {
     try {
       setLoading(true)
 
+      /**
+       *
+       * CAVE: In der Produktion wird der Aufruf 'localhost:5173' (Vite FE) statt localhost:3000 (Backend) versucht
+       *  -> gibt ein Fehler in Chrome. Komischerweise erscheint die Statistik trotzdem
+       *
+       */
       // API-Aufruf zum Backend
-      const response = await fetch('/api/statistics')
+      const response = await fetch('${API_BASE}/api/statistics')
 
       if (!response.ok) {
         throw new Error(`HTTP-Fehler! Status: ${response.status}`)
@@ -44,7 +52,7 @@ const StatistikDashboard = () => {
       // Optional: Dokumente-Anzahl separat laden
       let documentCount = 0
       try {
-        const docResponse = await fetch('/api/documents/count')
+        const docResponse = await fetch('${API_BASE}/api/documents/count')
         const docData = await docResponse.json()
         documentCount = docData.count || 0
       } catch (docError) {

@@ -1,6 +1,8 @@
 // src/components/QuestionAnswer.jsx
 import React, { useState, useRef } from 'react'
 
+// Produktion oder Entwicklung
+const API_BASE = import.meta.env.VITE_API_BASE_URL
 /**
  * QuestionAnswer Komponente
  *
@@ -59,7 +61,7 @@ const QuestionAnswer = () => {
 
     try {
       // API-Anfrage mit fetch
-      const response = await fetch('/api/ask', {
+      const response = await fetch('${API_BASE}/api/ask', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
