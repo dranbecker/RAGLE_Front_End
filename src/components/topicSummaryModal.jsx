@@ -1,6 +1,8 @@
 // src/components/topicSummaryModal.jsx
 import React, { useState, useEffect } from 'react'
 
+const API_BASE = import.meta.env.VITE_API_BASE_URL
+
 const TopicSummaryModal = ({ isOpen, topic, onClose }) => {
   const [summary, setSummary] = useState('')
   const [questionCount, setQuestionCount] = useState(0)
@@ -19,7 +21,7 @@ const TopicSummaryModal = ({ isOpen, topic, onClose }) => {
     try {
       // API-Anfrage an den Backend-Endpunkt
       const response = await fetch(
-        `/api/topics/summary/${encodeURIComponent(topicName)}`
+        `${API_BASE}/api/topics/summary/${encodeURIComponent(topicName)}`
       )
 
       if (!response.ok) {
