@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import StickyNavbar from './components/StickyNavbar' // Importiere die neue Navbar
+import StickyNavbar from './components/stickyNavbar' // Importiere die neue Navbar
 import HeroSection from './components/hero'
 import StatistikDashboard from './components/statisticsDashboard'
 import MedicalDisclaimer from './components/medicalDisclaimer'
