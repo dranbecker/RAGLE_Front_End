@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import NewPublicationCard from './newPublicationCard'
 
+//Holt jetzt den Host aus der env
+const API_BASE = import.meta.env.VITE_API_BASE_URL
+
 const NewPublicationCardList = () => {
   const [publications, setPublications] = useState([])
 
   useEffect(() => {
     const fetchPublications = async () => {
       try {
-        const response = await fetch('/api/citeref/cards')
+        const response = await fetch('${API_BASE}/api/citeref/cards')
         const data = await response.json()
         setPublications(data)
       } catch (error) {
