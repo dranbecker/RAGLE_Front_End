@@ -61,7 +61,7 @@ const QuestionAnswer = () => {
 
     try {
       // API-Anfrage mit fetch
-      const response = await fetch('${API_BASE}/api/ask', {
+      const response = await fetch(`${API_BASE}/api/ask`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

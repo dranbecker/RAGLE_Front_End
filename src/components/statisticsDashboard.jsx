@@ -52,7 +52,7 @@ const StatistikDashboard = () => {
       // Optional: Dokumente-Anzahl separat laden
       let documentCount = 0
       try {
-        const docResponse = await fetch('${API_BASE}/api/documents/count')
+        const docResponse = await fetch(`${API_BASE}/api/documents/count`)
         const docData = await docResponse.json()
         documentCount = docData.count || 0
       } catch (docError) {

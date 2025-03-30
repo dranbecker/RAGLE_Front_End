@@ -10,7 +10,7 @@ const NewPublicationCardList = () => {
   useEffect(() => {
     const fetchPublications = async () => {
       try {
-        const response = await fetch('${API_BASE}/api/citeref/cards')
+        const response = await fetch(`${API_BASE}/api/citeref/cards`)
         const data = await response.json()
         setPublications(data)
       } catch (error) {
