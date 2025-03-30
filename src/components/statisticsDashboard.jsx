@@ -40,7 +40,7 @@ const StatistikDashboard = () => {
        *
        */
       // API-Aufruf zum Backend
-      const response = await fetch('${API_BASE}/api/statistics')
+      const response = await fetch(`${API_BASE}/api/statistics`)
 
       if (!response.ok) {
         throw new Error(`HTTP-Fehler! Status: ${response.status}`)
