@@ -1,11 +1,13 @@
-// src/components/StickyNavigation.jsx
 import React, { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import logoImg from '../assets/head_logo_raglePD.png'
+import Modal from './modal'
+import NewsletterSubscribe from './newsletterSubscribe'
 
 const StickyNavigation = () => {
   const [isSticky, setIsSticky] = useState(false)
   const location = useLocation()
+  const [showModal, setShowModal] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,13 +32,28 @@ const StickyNavigation = () => {
           >
             <img src={logoImg} className='h-8' alt='RAGLE Logo' />
           </Link>
-          <div className='flex items-center space-x-6 rtl:space-x-reverse'>
-            <a
-              href='tel:+496221884010'
-              className='text-sm text-gray-300 hover:text-white hover:underline'
+          <button
+            onClick={() => setShowModal(true)}
+            type='button'
+            className='flex items-center gap-2 py-2 px-4 text-sm font-medium text-gray-300 bg-gray-700 border border-gray-500 rounded-lg hover:bg-gray-600 hover:text-blue-400 transition-colors duration-200'
+          >
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              fill='none'
+              viewBox='0 0 24 24'
+              strokeWidth={1.5}
+              stroke='currentColor'
+              className='w-5 h-5'
             >
-              +49 6221 88 4010
-            </a>
+              <path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                d='M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25H4.5a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15A2.25 2.25 0 002.25 6.75m19.5 0v.243a2.25 2.25 0 01-.659 1.591l-7.5 7.5a1.5 1.5 0 01-2.122 0l-7.5-7.5a2.25 2.25 0 01-.659-1.591V6.75'
+              />
+            </svg>
+            Einschreiben für ScienceUpdate
+          </button>
+          <div className='flex items-center space-x-6 rtl:space-x-reverse'>
             <Link
               to='/login'
               className='text-sm text-blue-400 hover:text-blue-300 hover:underline'
@@ -114,6 +131,14 @@ const StickyNavigation = () => {
           </div>
         </div>
       </nav>
+      {showModal && (
+        <Modal
+          title='Einschreiben für ScienceUpdate'
+          onClose={() => setShowModal(false)}
+        >
+          <NewsletterSubscribe />
+        </Modal>
+      )}
     </div>
   )
 }
