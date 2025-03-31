@@ -22,9 +22,9 @@ function Impressum() {
 
           <h3 className='text-lg font-semibold mt-4 mb-2'>Kontakt</h3>
           <p className='mb-4'>
-            Telefon: +49 6221 88 4010
+            Telefon: +49 621 76228787
             <br />
-            E-Mail: kontakt@srh.de
+            E-Mail: andreas.becker@ragle.de
           </p>
 
           {/* Weitere Impressum-Inhalte aus Ihrer Modal-Vorlage */}

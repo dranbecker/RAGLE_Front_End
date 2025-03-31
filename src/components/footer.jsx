@@ -10,9 +10,9 @@ const Footer = () => {
     <footer className='bg-gray-800 text-gray-300 py-10'>
       <div className='container mx-auto px-4'>
         {/* Footer Hauptinhalt mit drei Spalten */}
-        <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
+        <div className='flex flex-col md:flex-row justify-between text-left max-w-6xl mx-auto space-y-8 md:space-y-0 md:space-x-12'>
           {/* Erste Spalte: Über diesen Dienst */}
-          <div className='footer-section'>
+          <div className='footer-section basis-1/3 flex-shrink-0'>
             <h3 className='text-xl font-semibold mb-4 text-white text-left'>
               Die RAGLE-PD Plattform
             </h3>
@@ -27,31 +27,33 @@ const Footer = () => {
           </div>
 
           {/* Zweite Spalte: Rechtliches */}
-          <div className='footer-section'>
-            <h3 className='text-xl font-semibold mb-4 text-white'>
+          <div className='footer-section basis-1/3 flex-shrink-0'>
+            <h3 className='text-xl font-semibold mb-4 text-white text-left'>
               Rechtliches
             </h3>
             <ul className='space-y-2'>
-              <li className='hover:text-blue-300 transition-colors'>
+              <li className='hover:text-blue-300 transition-colors text-left'>
                 <Link to='/impressum'>Impressum</Link>
               </li>
-              <li className='hover:text-blue-300 transition-colors'>
+              <li className='hover:text-blue-300 transition-colors text-left'>
                 <Link to='/datenschutz'>Datenschutz</Link>
               </li>
-              <li className='hover:text-blue-300 transition-colors'>
+              <li className='hover:text-blue-300 transition-colors text-left'>
                 <Link to='/nutzungsbedingungen'>Nutzungsbedingungen</Link>
               </li>
             </ul>
           </div>
 
           {/* Dritte Spalte: Kontakt mit Social Media Icons */}
-          <div className='footer-section'>
-            <h3 className='text-xl font-semibold mb-4 text-white'>Kontakt</h3>
+          <div className='footer-section basis-1/3 flex-shrink-0'>
+            <h3 className='text-xl font-semibold mb-4 text-white text-left'>
+              Kontakt
+            </h3>
             <p className='flex items-center mb-2'>
-              <FaEnvelope className='mr-2' /> info.kkh@srh.de
+              <FaEnvelope className='mr-2' /> info@ragle.de
             </p>
             <p className='flex items-center mb-4'>
-              <FaPhone className='mr-2' /> +49 6221 88 4010
+              <FaPhone className='mr-2' /> +49 621 76228787
             </p>
 
             {/* Social Media Icons */}

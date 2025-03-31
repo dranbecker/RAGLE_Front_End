@@ -44,7 +44,7 @@ const HeroSection = () => {
             href='#spenden'
             className='inline-block bg-white text-[#3498db] px-8 py-3 rounded-full font-semibold text-center transition-all duration-300 hover:bg-gray-50 hover:-translate-y-0.5 hover:shadow-md'
           >
-            Jetzt unterstützen
+            Jetzt mitmachen
           </a>
         </div>
       </div>

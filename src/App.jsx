@@ -17,7 +17,7 @@ import Nutzungsbedingungen from './pages/nutzungsbedingungen'
 import UeberUns from './pages/ueberUns'
 import { AuthProvider, useAuth } from './context/authContext'
 import NewPublicationCardList from './components/newPublicationCardList'
-import './App.css'
+// import './App.css'
 
 // Geschützte Route Komponente
 function ProtectedRoute({ children }) {
