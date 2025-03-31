@@ -7,6 +7,7 @@ const NewPublicationCard = ({
   url,
   journal,
   matched_keyword,
+  onTitleClick,
 }) => {
   const formatAuthors = (authorArray) => {
     if (!authorArray || authorArray.length === 0) return 'Keine Autoren'
@@ -38,15 +39,18 @@ const NewPublicationCard = ({
           <path d='M17 6.414V17a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h6.586A2 2 0 0 1 13 1.586l4.414 4.414A2 2 0 0 1 17 6.414zM13 3.414V7h3.586L13 3.414z' />
         </svg>
         {/* ToDo: "NEW"-Badge dynamisch steuern – z.B. zeitlich begrenzt einblenden */}
-        <span className='ml-2 px-2 py-0.5 text-xs font-semibold text-white bg-blue-500 rounded-full'>
-          {matched_keyword}
-        </span>
+        <div dir='rtl'>
+          <span className='ml-2 px-2 py-0.5 text-xs font-semibold text-white bg-gray-500 rounded-s-lg'>
+            {matched_keyword}
+          </span>
+        </div>
       </div>
-      <a href={url} target='_blank' rel='noopener noreferrer'>
-        <h5 className='mb-2 text-base font-normal tracking-tight text-gray-900 dark:text-white'>
-          {title}
-        </h5>
-      </a>
+      <button
+        onClick={onTitleClick}
+        className='mb-2 text-base font-normal tracking-tight text-gray-900 dark:text-white hover:underline text-left w-full'
+      >
+        {title}
+      </button>
       <p className='mb-1 text-sm font-medium text-gray-500 dark:text-gray-400'>
         {containerTitle}
       </p>
