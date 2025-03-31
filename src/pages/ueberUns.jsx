@@ -1,4 +1,3 @@
-// src/pages/UeberUns.jsx
 import React from 'react'
 import ContentSection from '../components/contentSection'
 import Navigation from '../components/navigation'
@@ -6,9 +5,6 @@ import Navigation from '../components/navigation'
 function UeberUns() {
   return (
     <>
-      {/* Navigation-Komponente einbinden */}
-      <Navigation />
-
       <div className='container mx-auto px-4 py-8'>
         {/* Hauptinhalt in einer ContentSection (wiederverwendbare Komponente) */}
         <ContentSection>
@@ -23,10 +19,17 @@ function UeberUns() {
           {/* Einleitender Text */}
           <div className='max-w-3xl mx-auto mb-12 text-lg text-gray-700 leading-relaxed text-left'>
             <p className='mb-4'>
-              RAGLE-PD ist mehr als nur eine Wissensplattform – es ist unsere
-              Vision für eine Zukunft, in der medizinisches Wissen über
-              Parkinson-Erkrankungen demokratisiert, validiert und intelligent
-              zugänglich gemacht wird.
+              <strong className='text-blue-600'>
+                RAGLE-PD ist mehr als eine Plattform.
+              </strong>{' '}
+              Es ist ein lebendiger Ort für alle, die verstehen wollen, was
+              Parkinson bedeutet – wissenschaftlich, menschlich und praktisch.
+            </p>
+            <p className='mb-4'>
+              Unser Ziel ist es, fundiertes Wissen nicht nur bereitzustellen,
+              sondern durch kluge Strukturen und moderne Technologie auch
+              zugänglich und erfahrbar zu machen. Dabei steht eines im Fokus:
+              Relevanz. Verständlichkeit. Vertrauen.
             </p>
           </div>
 
@@ -99,6 +102,35 @@ function UeberUns() {
                 </p>
               </div>
             </div>
+          </div>
+
+          {/* Lernen aus Fragen – Gemeinsam Wissen schaffen */}
+          <div className='mb-12'>
+            <h2 className='text-2xl font-semibold mb-4 text-gray-800'>
+              Lernen aus Fragen – Gemeinsam Wissen schaffen
+            </h2>
+            <p className='text-gray-700 mb-4 text-left'>
+              Bei RAGLE-PD glauben wir:{' '}
+              <span className='font-semibold text-blue-600'>
+                Gute Fragen sind der Anfang von echtem Lernen.
+              </span>{' '}
+              Denn wenn viele Menschen zu einem Thema nach Antworten suchen,
+              entstehen daraus neue Erkenntnisse – für alle.
+            </p>
+            <p className='text-gray-700 mb-4 text-left'>
+              Unterstützt durch künstliche Intelligenz verwandeln wir
+              wiederkehrende Fragen in klare, verständliche Lerninhalte. So
+              entsteht ein Kreislauf: Aus Neugier wird Wissen, aus Wissen wird
+              Kompetenz.
+            </p>
+            <p className='text-gray-700 text-left'>
+              Wer mitmacht, kann nicht nur eigene Antworten finden – sondern
+              auch anderen helfen, besser zu verstehen.{' '}
+              <span className='italic text-blue-600'>
+                Und am Ende steht ein Zertifikat, das zeigt, was man wirklich
+                verstanden hat.
+              </span>
+            </p>
           </div>
 
           {/* Unsere Vision für die Zukunft */}

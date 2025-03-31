@@ -6,6 +6,7 @@ const NewPublicationCard = ({
   author,
   url,
   journal,
+  matched_keyword,
 }) => {
   const formatAuthors = (authorArray) => {
     if (!authorArray || authorArray.length === 0) return 'Keine Autoren'
@@ -17,7 +18,13 @@ const NewPublicationCard = ({
       : `${format(first)} & ${format(last)}`
   }
 
-  console.log('Debug: Props', { title, containerTitle, author, url })
+  console.log('Debug: Props', {
+    title,
+    containerTitle,
+    author,
+    url,
+    matched_keyword,
+  })
 
   return (
     <div className='w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 text-left'>
@@ -30,9 +37,9 @@ const NewPublicationCard = ({
         >
           <path d='M17 6.414V17a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h6.586A2 2 0 0 1 13 1.586l4.414 4.414A2 2 0 0 1 17 6.414zM13 3.414V7h3.586L13 3.414z' />
         </svg>
-        {/* ToDo: "NEW"-Badge dynamisch steuern – z. B. zeitlich begrenzt einblenden */}
+        {/* ToDo: "NEW"-Badge dynamisch steuern – z.B. zeitlich begrenzt einblenden */}
         <span className='ml-2 px-2 py-0.5 text-xs font-semibold text-white bg-blue-500 rounded-full'>
-          NEW
+          {matched_keyword}
         </span>
       </div>
       <a href={url} target='_blank' rel='noopener noreferrer'>
