@@ -1,6 +1,4 @@
 import React from 'react'
-import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
 
 const SummaryModal = ({ isOpen, onClose, summaryDe, summaryEn }) => {
   if (!isOpen) return null
@@ -15,51 +13,17 @@ const SummaryModal = ({ isOpen, onClose, summaryDe, summaryEn }) => {
           <h3 className='font-medium text-gray-700 dark:text-gray-300 mb-1'>
             🇩🇪 Deutsch
           </h3>
-          <ReactMarkdown
-            className='prose dark:prose-invert max-w-none'
-            remarkPlugins={[remarkGfm]}
-            components={{
-              h2: (props) => (
-                <h2 className='text-lg font-semibold mt-4' {...props} />
-              ),
-              h3: (props) => (
-                <h3 className='text-base font-semibold mt-3' {...props} />
-              ),
-              p: (props) => (
-                <p
-                  className='mb-2 text-gray-600 dark:text-gray-400 text-sm'
-                  {...props}
-                />
-              ),
-            }}
-          >
+          <p className='text-gray-600 dark:text-gray-400 text-sm whitespace-pre-line'>
             {summaryDe}
-          </ReactMarkdown>
+          </p>
         </div>
         <div className='mb-4'>
           <h3 className='font-medium text-gray-700 dark:text-gray-300 mb-1'>
             🇬🇧 Englisch
           </h3>
-          <ReactMarkdown
-            className='prose dark:prose-invert max-w-none'
-            remarkPlugins={[remarkGfm]}
-            components={{
-              h2: (props) => (
-                <h2 className='text-lg font-semibold mt-4' {...props} />
-              ),
-              h3: (props) => (
-                <h3 className='text-base font-semibold mt-3' {...props} />
-              ),
-              p: (props) => (
-                <p
-                  className='mb-2 text-gray-600 dark:text-gray-400 text-sm'
-                  {...props}
-                />
-              ),
-            }}
-          >
+          <p className='text-gray-600 dark:text-gray-400 text-sm whitespace-pre-line'>
             {summaryEn}
-          </ReactMarkdown>
+          </p>
         </div>
         <button
           onClick={onClose}

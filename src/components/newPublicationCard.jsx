@@ -51,12 +51,12 @@ const NewPublicationCard = ({
       >
         {title}
       </button>
-      <p className='mb-1 text-sm font-medium text-gray-500 dark:text-gray-400'>
+      <p className='mb-1 text-sm font-mono text-gray-500 dark:text-gray-400'>
         {containerTitle}
       </p>
 
       <p className='mb-0 text-sm font-normal text-gray-500 dark:text-gray-400'>
-        Journal: {journal}
+        {journal}
       </p>
       <p className='mb-3 text-sm font-normal text-gray-500 dark:text-gray-400'>
         Autoren: {formatAuthors(author)}
@@ -64,7 +64,7 @@ const NewPublicationCard = ({
       {url ? (
         <a
           href={url}
-          className='inline-flex font-medium items-center text-blue-600 hover:underline'
+          className='inline-flex text-sm font-normal items-center text-blue-600 hover:underline'
           target='_blank'
           rel='noopener noreferrer'
         >
@@ -86,7 +86,7 @@ const NewPublicationCard = ({
           </svg>
         </a>
       ) : (
-        <div className='inline-flex font-medium items-center text-gray-400'>
+        <div className='inline-flex text-sm font-normal items-center text-blue-600 hover:underline'>
           <svg
             className='w-3 h-3 mr-1'
             xmlns='http://www.w3.org/2000/svg'
