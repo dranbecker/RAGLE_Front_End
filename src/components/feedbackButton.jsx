@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Modal from './Modal'
+import Modal from './modal'
 import { toast } from 'react-hot-toast'
 
 //Holt jetzt den Host aus der env
