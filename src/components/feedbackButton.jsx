@@ -1,6 +1,6 @@
 /**
  *
- * für FrageAntwort
+ * für FrageAntwort Button
  *
  */
 import React, { useState } from 'react'
