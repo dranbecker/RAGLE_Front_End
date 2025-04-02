@@ -1,3 +1,8 @@
+/**
+ *
+ * für FrageAntwort
+ *
+ */
 import React, { useState } from 'react'
 import Modal from './modal'
 import { toast } from 'react-hot-toast'
