@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import StickyNavbar from './components/stickyNavbar' // Importiere die neue Navbar
+import { Toaster } from 'react-hot-toast'
 import HeroSection from './components/hero'
 import StatistikDashboard from './components/statisticsDashboard'
 import MedicalDisclaimer from './components/medicalDisclaimer'
@@ -66,6 +67,7 @@ function App() {
         <div className='min-h-screen bg-white flex flex-col'>
           {/* Füge die Sticky-Navbar an dieser Stelle ein */}
           <StickyNavbar />
+          <Toaster position='bottom-right' />
 
           {/* Hauptinhalt mit Abstand zum Navbar */}
           <div className='flex-grow pt-[112px]'>

@@ -1,5 +1,6 @@
 // src/components/QuestionAnswer.jsx
 import React, { useState, useRef } from 'react'
+import FeedbackButtons from './feedbackButton'
 
 // Produktion oder Entwicklung
 const API_BASE = import.meta.env.VITE_API_BASE_URL
@@ -21,6 +22,7 @@ const QuestionAnswer = () => {
   const [answer, setAnswer] = useState(null) // Antwort vom Server
   const [error, setError] = useState(null) // Fehlermeldungen
   const [copySuccess, setCopySuccess] = useState(false) // Status für die Kopier-Funktion
+  const [currentQuestionId, setCurrentQuestionId] = useState(null) // Aktuelle Frage-ID
 
   // Referenz für das Textfeld, um darauf programmatisch zuzugreifen
   const questionInputRef = useRef(null)
@@ -77,9 +79,8 @@ const QuestionAnswer = () => {
 
       // JSON-Daten parsen
       const data = await response.json()
-
-      // Antwort setzen
       setAnswer(data)
+      setCurrentQuestionId(data.questionId)
 
       // Für zukünftige Fragen das Textfeld nicht leeren, sondern nur bei Fokus
       if (questionInputRef.current) {
@@ -107,10 +108,6 @@ const QuestionAnswer = () => {
       input.dataset.shouldClear = 'false'
     }
   }
-
-  /**
-   * Kopiert die Frage und Antwort in die Zwischenablage
-   */
 
   /**
    * Kopiert die Frage und Antwort in die Zwischenablage
@@ -330,6 +327,10 @@ Becker, A. (n.d.).RAGLE – Retrieval-Augmented Generation Language Engine [Onli
                 __html: markdownToHtml(answer.answer),
               }}
             />
+
+            <div className='flex justify-center mt-4'>
+              <FeedbackButtons questionId={currentQuestionId} />
+            </div>
 
             {/* Quellenangaben */}
             <div className='sources mb-4'>
