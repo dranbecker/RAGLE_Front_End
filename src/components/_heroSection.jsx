@@ -1,4 +1,3 @@
-// src/components/heroSection.jsx
 import React from 'react'
 // Importiere das Bild - Pfad anpassen je nachdem, wo du das Hintergrundbild speicherst
 import bgImage from '../assets/andreas_discord.webp'
@@ -13,7 +12,7 @@ const HeroSection = () => {
       />
 
       {/* Zitat Container links */}
-      <div className='relative w-[70%] p-[60px_40px] text-[#f8971d] z-20 flex flex-col justify-center'>
+      <div className='relative w-[70%] pt-[240px] pr-[40px] pb-[40px] pl-[40px] text-[#f8971d] z-20 flex flex-col justify-center text-left'>
         <blockquote className='text-2xl mb-5 max-w-[400px]'>
           "RAGLE-PD ist mehr als ein Zugang zu Wissen – es ist eine Plattform,
           auf der aus Fragen Wissen entsteht und aus Antworten Lernen wird..."
