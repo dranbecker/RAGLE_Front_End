@@ -41,6 +41,7 @@ const NewPublicationCardList = () => {
             matched_keyword={pub.matched_keyword}
             summary_en={pub.summary_en}
             summary_de={pub.summary_de}
+            audio_url={pub.audio_url}
             onTitleClick={() => handleTitleClick(pub)}
           />
         ))}
